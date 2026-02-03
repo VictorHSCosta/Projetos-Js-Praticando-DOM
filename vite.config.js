@@ -11,6 +11,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'src/index.html'),
         jogoDaVelha: resolve(__dirname, 'src/pages/jogo_da_velha/index.html'),
+        piano: resolve(__dirname, 'src/pages/piano/index.html'),
+
       }
     }
   },
