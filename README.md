@@ -53,6 +53,7 @@ src/
 ## 🎮 Projetos
 
 ### 1. Jogo da Velha
+
 - Jogo clássico da velha (tic-tac-toe)
 - Sistema de pontuação com localStorage
 - Interface responsiva e animada
@@ -72,36 +73,40 @@ src/
 1. Crie uma pasta em `src/pages/seu-projeto/`
 2. Adicione `index.html` e `app.js`
 3. Importe os utilitários necessários:
+
 ```javascript
-import { $, $$ } from '../../js/utils/dom.js';
-import { on, delegate } from '../../js/utils/events.js';
+import { $, $$ } from "../../js/utils/dom.js";
+import { on, delegate } from "../../js/utils/events.js";
 ```
+
 4. Adicione um card na página principal (`src/index.html`)
 5. Configure a rota no `vite.config.js` se necessário
 
 ## 💡 Exemplos de Uso dos Utilitários
 
 ### DOM Utilities
+
 ```javascript
-import { $, $$, createElement } from './js/utils/dom.js';
+import { $, $$, createElement } from "./js/utils/dom.js";
 
 // Selecionar elementos
-const button = $('#myButton');
-const items = $$('.item');
+const button = $("#myButton");
+const items = $$(".item");
 
 // Criar elementos
-const div = createElement('div', 'my-class', 'Hello');
+const div = createElement("div", "my-class", "Hello");
 ```
 
 ### Event Utilities
+
 ```javascript
-import { on, delegate } from './js/utils/events.js';
+import { on, delegate } from "./js/utils/events.js";
 
 // Event listener simples
-on(button, 'click', handleClick);
+on(button, "click", handleClick);
 
 // Event delegation
-delegate(container, '.item', 'click', handleItemClick);
+delegate(container, ".item", "click", handleItemClick);
 ```
 
 ## 🤝 Contribuindo

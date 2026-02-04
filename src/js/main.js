@@ -1,3 +1,3 @@
-import '../styles/main.css';
-import '../components/jogoDaVelhaLink';
-import '../components/pianoLink'
+import "../styles/main.css";
+import "../components/jogoDaVelhaLink";
+import "../components/pianoLink";

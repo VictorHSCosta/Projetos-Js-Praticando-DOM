@@ -1,13 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body class="bg-gray-900 h-screen">
+    <div class="flex flex-row h-screen">
+      <div></div>
+      <div>
+        <div class="flex flex-col h-full w-60">
+          <div
+            class="bg-blue-100 hover:bg-blue-200 text-blue-900 p-3 text-2xl rounded-2xl flex h-full"
+            id="do"
+          >
+            DO
+          </div>
+          <div
+            class="bg-emerald-100 hover:bg-emerald-200 text-emerald-900 p-3 text-2xl rounded-2xl flex h-full"
+            id="re"
+          >
+            RÉ
+          </div>
+          <div
+            class="bg-purple-100 hover:bg-purple-200 text-purple-900 p-3 text-2xl rounded-2xl flex h-full"
+            id="mi"
+          >
+            MI
+          </div>
+          <div
+            class="bg-orange-100 hover:bg-orange-200 text-orange-900 p-3 text-2xl rounded-2xl flex h-full"
+            id="fa"
+          >
+            FA
+          </div>
+          <div
+            class="bg-pink-100 hover:bg-pink-200 text-pink-900 p-3 text-2xl rounded-2xl flex h-full"
+            id="sol"
+          >
+            SOL
+          </div>
+          <div
+            class="bg-yellow-100 hover:bg-yellow-200 text-yellow-900 p-3 text-2xl rounded-2xl flex h-full"
+            id="la"
+          >
+            LA
+          </div>
+          <div
+            class="bg-slate-100 hover:bg-slate-200 text-slate-900 p-3 text-2xl rounded-2xl flex h-full"
+            id="si"
+          >
+            SI
+          </div>
+        </div>
+        <div class="grid grid-cols-10" id="temporizador"></div>
+        <div class="hidden h-0" id="musicDiv"></div>
+      </div>
+    </div>
 
-    <script src="./script.js"></script>    
-</body>
+    <script type="module" src="index.js"></script>
+  </body>
 </html>
