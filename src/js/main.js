@@ -1,3 +1,3 @@
 import "../styles/main.css";
-import "../components/jogoDaVelhaLink";
-import "../components/pianoLink";
+import "../components/jogoDaVelhaIcon";
+import "../components/pianoIcon";
