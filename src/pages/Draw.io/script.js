@@ -1,17 +1,31 @@
-let colorSelect = "bg-black";
-let elementRef = document.getElementById("bg-black");
-
-const square = document.getElementById("square");
-
-let isDrawing = false; // O nosso "interruptor"
-
-square.addEventListener("mousedown", () => isDrawing = true);
-square.addEventListener("mouseup", () => isDrawing = false);
-square.addEventListener("mouseleave", () => isDrawing = false); // Para de desenhar se o mouse sair da área
-
-square.addEventListener("mousemove", drawColor)
-
+// Variáveis Globais
+let colorSelect = "black";
+let elementRef = document.getElementById("black");
+let canDraw = false;
+let mouseX = 0;
+let mouseY = 0;
+const canvas = document.getElementById("square");
+const ctx = canvas.getContext("2d");
 elementRef.classList.add("border-green-600")
+const clearButton = document.getElementById("clear");
+
+// Adiciona evento de click para todos os botões
+const buttons = document.getElementsByTagName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", chooseColor)
+}
+
+// Eventos do Mouse
+canvas.addEventListener("mousedown", mouseDownEvent)
+canvas.addEventListener("mouseup", mouseUpEvent)
+canvas.addEventListener("mousemove", mouseMoveEvent)
+
+// AJUSTE DE TAMANHO: Faz o canvas interno ter o mesmo tamanho da tela
+window.addEventListener('load', () => {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+});
+
 
 function chooseColor(e) {
     if (elementRef) {
@@ -26,31 +40,43 @@ function chooseColor(e) {
     elementRef.classList.add("border-green-600")
 }
 
-
-function drawColor(e) {
-    if (!isDrawing) return; // Se o mouse não estiver pressionado, não faz nada
-
-    // 1. Usamos offsetX/Y para pegar o lugar exato dentro da div
-    const x = e.offsetX;
-    const y = e.offsetY;
-
-    const newDiv = document.createElement("div")
-
-    // 2. Classes de estilo fixo do Tailwind (que existem no CSS)
-    newDiv.classList.add("absolute")
-    newDiv.classList.add(colorSelect) // Ex: "bg-black"
-    newDiv.classList.add("h-2")
-    newDiv.classList.add("w-2")
-    newDiv.classList.add("rounded-full")
-    newDiv.classList.add("-translate-x-1/2") // Centraliza a bolinha no mouse
-    newDiv.classList.add("-translate-y-1/2")
-
-    // 3. Posição exata usamos STYLE (CSS Puro), não classes dinâmicas
-    newDiv.style.left = `${x}px`;
-    newDiv.style.top = `${y}px`;
-    newDiv.style.zIndex = "100";
-    newDiv.style.position = "absolute";
-
-    square.appendChild(newDiv)
+function mouseDownEvent(e) {
+    canDraw = true;
+    mouseX = e.offsetX;
+    mouseY = e.offsetY;
 }
 
+function mouseUpEvent() {
+    canDraw = false;
+}
+
+function mouseMoveEvent(e) {
+    if (canDraw) {
+        draw(e.offsetX, e.offsetY);
+    }
+}
+
+function draw(x, y) {
+    ctx.beginPath();
+    ctx.lineWidth = 5;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round"; // Adicionado para suavidade
+
+    // Converte de "bg-red-600" para "red" usando nosso objeto
+    ctx.strokeStyle = colorSelect || "black";
+
+    ctx.moveTo(mouseX, mouseY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+
+    mouseX = x;
+    mouseY = y;
+}
+
+// Botão Limpar
+document.getElementById("clear").addEventListener("click", () => { clearCanvas() })
+
+function clearCanvas() {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
