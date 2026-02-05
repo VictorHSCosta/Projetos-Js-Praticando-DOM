@@ -59,6 +59,16 @@ src/
 - Interface responsiva e animada
 - Lógica de vitória e empate
 
+### 2. Desenho
+
+- Variação de cores
+- Desenhe na tela estilo paint
+
+#### Funcionamento:
+
+[Gravação de tela de 2026-02-04 21-47-13.webm](https://github.com/user-attachments/assets/dd0f9928-9ae5-4b99-8b45-bded2a131a2c)
+
+
 ## 🎨 Recursos
 
 - **Arquitetura Modular**: Código organizado em módulos ES6
