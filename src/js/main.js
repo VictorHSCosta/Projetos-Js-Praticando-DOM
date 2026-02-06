@@ -1,1 +1,3 @@
-import '../styles/main.css';
+import "../styles/main.css";
+import "../components/jogoDaVelhaIcon";
+import "../components/pianoIcon";

@@ -1,21 +1,23 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
-  root: 'src',
-  publicDir: '../public',
+  root: "src",
+  publicDir: "../public",
   build: {
-    outDir: '../dist',
+    outDir: "../dist",
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'src/index.html'),
-        jogoDaVelha: resolve(__dirname, 'src/pages/jogo_da_velha/index.html'),
-      }
-    }
+        main: resolve(__dirname, "src/index.html"),
+        jogoDaVelha: resolve(__dirname, "src/pages/jogo_da_velha/index.html"),
+        piano: resolve(__dirname, "src/pages/piano/index.html"),
+        drawio: resolve(__dirname, "src/pages/Draw.io/index.html"),
+      },
+    },
   },
   server: {
     port: 3000,
-    open: true
-  }
+    open: true,
+  },
 });
