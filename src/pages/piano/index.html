@@ -13,8 +13,8 @@
     <nav>
 
     </nav>
-    <div>
-      <div class="flex flex-col h-full w-60" id="piano">
+    <div class="flex justify-center w-full align-middle flex-col items-center">
+      <div class="grid grid-cols-2 justify-center max-h-96 w-60 gap-3" id="piano">
         <div class="bg-blue-100 hover:bg-blue-200 text-blue-900 p-3 text-2xl rounded-xl flex h-full" id="a">
           DO
         </div>
@@ -37,17 +37,13 @@
           SI
         </div>
       </div>
-    </div>
 
-    <div class="relative flex flex-col h-full bg-black w-full" id="temporizador">
-      <div class="bg-blue-100 hover:bg-blue-200 text-blue-900 p-3 text-2xl rounded-xl flex h-full" id="do"></div>
-      <div class="bg-emerald-100 hover:bg-emerald-200 text-emerald-900 p-3 text-2xl rounded-xl flex h-full" id="re">
+      <div>
+        <input type="text" class="mt-6 rounded-full px-4 py-2 font-semibold" id="notesToPlay">
+
+        <button class="font-extrabold text-green-700 ml-4" id="StartMusic">Iniciar</button>
       </div>
-      <div class="bg-purple-100 hover:bg-purple-200 text-purple-900 p-3 text-2xl rounded-xl flex h-full" id="mi"></div>
-      <div class="bg-orange-100 hover:bg-orange-200 text-orange-900 p-3 text-2xl rounded-xl flex h-full" id="fa"></div>
-      <div class="bg-pink-100 hover:bg-pink-200 text-pink-900 p-3 text-2xl rounded-xl flex h-full" id="sol"></div>
-      <div class="bg-yellow-100 hover:bg-yellow-200 text-yellow-900 p-3 text-2xl rounded-xl flex h-full" id="la"></div>
-      <div class="bg-slate-100 hover:bg-slate-200 text-slate-900 p-3 text-2xl rounded-xl flex h-full" id="si"></div>
+      
     </div>
   </main>
 

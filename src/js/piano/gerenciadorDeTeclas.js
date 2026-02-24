@@ -1,5 +1,7 @@
 import * as Tone from "tone";
 
+let isPlaying = false;
+
 const getCorrectNote = {
   a: "C5",
   s: "D5",
@@ -29,9 +31,10 @@ const synthTriggerAttack = (note) => {
 const reproduceAudio = (key) => {
   synthTriggerAttack(key);
 
-  const [firstColor, secondColor] = replaceColor(key);
+  const colors = replaceColor(key);
+  if (!colors) return;
 
-  if (!firstColor || !secondColor) return;
+  const [firstColor, secondColor] = colors;
 
   setTimeout(() => changeColor(firstColor, secondColor, key), 200);
   setTimeout(() => changeColor(secondColor, firstColor, key), 400);
@@ -60,7 +63,7 @@ function replaceColor(note) {
     case "j":
       return ["bg-slate-100", "bg-slate-200"];
     default:
-      null;
+      return null;
   }
 }
 
@@ -73,5 +76,24 @@ export const getSound = (e, theSoundOriginatedFromAClick = false) => {
     keyInstance = e.key;
   }
 
+  if (typeof keyInstance === "string") {
+    keyInstance = keyInstance.toLowerCase();
+  }
+
   reproduceAudio(keyInstance);
 };
+
+export const getNoteFromLetter = () => {
+  let notes = document.getElementById("notesToPlay").value.split("");
+
+  if (isPlaying) return;
+  isPlaying = true;
+
+  notes.forEach((note, index) => {
+    setTimeout(() => {
+      reproduceAudio(note);
+    }, index * 100);
+  });
+
+  isPlaying = false;
+}
