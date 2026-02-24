@@ -68,6 +68,15 @@ src/
 
 [Gravação de tela de 2026-02-04 21-47-13.webm](https://github.com/user-attachments/assets/dd0f9928-9ae5-4b99-8b45-bded2a131a2c)
 
+### 3. Piano
+
+- Teclas de piano usando a biblioteca Tone do java script
+- Toque automatico usando o input
+
+#### Funcionamento
+
+[Gravação de tela de 2026-02-23 21-58-59.webm](https://github.com/user-attachments/assets/a9ecc143-bba2-4ed8-8aa8-c3d1d5dd98f8)
+
 
 ## 🎨 Recursos
 
