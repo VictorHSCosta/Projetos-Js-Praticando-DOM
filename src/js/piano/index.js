@@ -1,5 +1,7 @@
 import { getSound , getNoteFromLetter } from "./gerenciadorDeTeclas";
 
+let notesToPlay = []
+
 const pianoElement = document.getElementById("piano");
 
 document.addEventListener("keydown", (e) => getSound(e));

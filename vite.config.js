@@ -13,6 +13,7 @@ export default defineConfig({
         jogoDaVelha: resolve(__dirname, "src/pages/jogo_da_velha/index.html"),
         piano: resolve(__dirname, "src/pages/piano/index.html"),
         drawio: resolve(__dirname, "src/pages/Draw.io/index.html"),
+        question: resolve(__dirname, "src/pages/question/index.html"),
       },
     },
   },

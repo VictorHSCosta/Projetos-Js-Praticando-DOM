@@ -26,7 +26,7 @@ const synthTriggerAttack = (note) => {
   const synth = new Tone.Synth().toDestination();
   const now = Tone.now();
   synth.triggerAttackRelease(getCorrectNote[note], 0.2, now);
-}
+};
 
 const reproduceAudio = (key) => {
   synthTriggerAttack(key);
@@ -38,11 +38,10 @@ const reproduceAudio = (key) => {
 
   setTimeout(() => changeColor(firstColor, secondColor, key), 200);
   setTimeout(() => changeColor(secondColor, firstColor, key), 400);
-
 };
 
 function changeColor(firstColor, secondColor, key) {
-  const keyElement = document.getElementById(key)
+  const keyElement = document.getElementById(key);
   keyElement.className = keyElement.className.replace(firstColor, secondColor);
 }
 
