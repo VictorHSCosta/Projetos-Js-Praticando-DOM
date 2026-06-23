@@ -1,137 +1,83 @@
-# 🎯 Projetos JS - Praticando DOM
+# Projetos JS - Praticando DOM
 
 Repositório com projetos práticos para treinar manipulação de DOM com JavaScript vanilla.
 
-## 🚀 Tecnologias
+## Tecnologias
 
-- **HTML5** - Estrutura semântica
-- **JavaScript (ES6+)** - Lógica e manipulação do DOM
-- **Tailwind CSS** - Estilização moderna e responsiva
-- **Vite** - Build tool moderna e rápida
+- HTML5
+- JavaScript
+- Tailwind CSS
+- Vite
 
-## 📦 Instalação
+## Instalação
 
 ```bash
-# Instalar dependências
 pnpm install
-
-# ou
-npm install
 ```
 
-## 🛠️ Comandos
+## Comandos
 
 ```bash
-# Iniciar servidor de desenvolvimento
 pnpm dev
-
-# Build para produção
 pnpm build
-
-# Preview do build
 pnpm preview
 ```
 
-## 📁 Estrutura do Projeto
+## Estrutura
 
 ```
 src/
-├── index.html              # Página principal
-├── styles/
-│   └── main.css           # Estilos globais com Tailwind
+├── index.html
 ├── js/
-│   ├── main.js            # JavaScript principal
-│   └── utils/
-│       ├── dom.js         # Utilitários para manipulação do DOM
-│       └── events.js      # Utilitários para eventos
+│   └── main.js
+├── styles/
+│   └── main.css
 └── pages/
-    └── jogo_da_velha/
-        ├── index.html     # HTML do projeto
-        └── app.js         # Lógica do projeto
+    ├── draw/
+    │   ├── index.html
+    │   └── index.js
+    ├── jogoDaVelha/
+    │   ├── index.html
+    │   └── index.js
+    ├── piano/
+    │   ├── index.html
+    │   └── index.js
+    └── question/
+        ├── index.html
+        └── index.js
 ```
 
-## 🎮 Projetos
+## Como funciona
 
-### 1. Jogo da Velha
+Este projeto usa o Vite como servidor e build, mas as paginas continuam sendo HTML e JavaScript puro.
 
-- Jogo clássico da velha (tic-tac-toe)
-- Sistema de pontuação com localStorage
-- Interface responsiva e animada
-- Lógica de vitória e empate
+Cada pagina deve ficar em uma pasta propria dentro de `src/pages/`:
 
-### 2. Desenho
+1. `index.html` para a estrutura da pagina.
+2. `index.js` para o JavaScript daquela pagina.
+3. Um link no array `projects` em `src/js/main.js`.
 
-- Variação de cores
-- Desenhe na tela estilo paint
+Exemplo de URL no dev server:
 
-#### Funcionamento:
+```text
+http://localhost:3000/draw
+http://localhost:3000/piano
+http://localhost:3000/jogoDaVelha
+http://localhost:3000/question
+```
 
-[Gravação de tela de 2026-02-04 21-47-13.webm](https://github.com/user-attachments/assets/dd0f9928-9ae5-4b99-8b45-bded2a131a2c)
+## Projetos
 
-### 3. Piano
+- Draw: canvas para desenhar.
+- Piano: notas com teclado, clique e input.
+- Jogo da Velha: base para praticar eventos e estado.
+- Question: quiz simples criado pelo DOM.
 
-- Teclas de piano usando a biblioteca Tone do java script
-- Toque automatico usando o input
-
-#### Funcionamento
-
-[Gravação de tela de 2026-02-23 21-58-59.webm](https://github.com/user-attachments/assets/a9ecc143-bba2-4ed8-8aa8-c3d1d5dd98f8)
-
-
-## 🎨 Recursos
-
-- **Arquitetura Modular**: Código organizado em módulos ES6
-- **Utilitários Reutilizáveis**: Funções helper para DOM e eventos
-- **Tailwind CSS**: Classes utilitárias customizadas
-- **Event Delegation**: Padrão eficiente para eventos
-- **LocalStorage**: Persistência de dados no navegador
-- **Vite HMR**: Hot Module Replacement para desenvolvimento rápido
-
-## 📚 Como Adicionar Novos Projetos
+## Como adicionar uma pagina
 
 1. Crie uma pasta em `src/pages/seu-projeto/`
-2. Adicione `index.html` e `app.js`
-3. Importe os utilitários necessários:
+2. Adicione `index.html` e `index.js`
+3. No HTML, use `<script type="module" src="./index.js"></script>`
+4. Adicione o link em `src/js/main.js`
 
-```javascript
-import { $, $$ } from "../../js/utils/dom.js";
-import { on, delegate } from "../../js/utils/events.js";
-```
-
-4. Adicione um card na página principal (`src/index.html`)
-5. Configure a rota no `vite.config.js` se necessário
-
-## 💡 Exemplos de Uso dos Utilitários
-
-### DOM Utilities
-
-```javascript
-import { $, $$, createElement } from "./js/utils/dom.js";
-
-// Selecionar elementos
-const button = $("#myButton");
-const items = $$(".item");
-
-// Criar elementos
-const div = createElement("div", "my-class", "Hello");
-```
-
-### Event Utilities
-
-```javascript
-import { on, delegate } from "./js/utils/events.js";
-
-// Event listener simples
-on(button, "click", handleClick);
-
-// Event delegation
-delegate(container, ".item", "click", handleItemClick);
-```
-
-## 🤝 Contribuindo
-
-Este é um projeto pessoal para prática, mas sugestões são bem-vindas!
-
-## 📄 Licença
-
-MIT
+O `vite.config.js` encontra automaticamente os `index.html` dentro de `src/pages`.

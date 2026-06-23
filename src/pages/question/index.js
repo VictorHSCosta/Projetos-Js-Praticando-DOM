@@ -1,58 +1,103 @@
-let questions = [];
+const questions = [
+  {
+    title: "What is JavaScript?",
+    options: [
+      { text: "A programming language", isCorrect: true },
+      { text: "A type of coffee", isCorrect: false },
+      { text: "A brand of shoes", isCorrect: false },
+      { text: "A musical instrument", isCorrect: false },
+    ],
+  },
+  {
+    title: "What is the capital of France?",
+    options: [
+      { text: "Berlin", isCorrect: false },
+      { text: "Madrid", isCorrect: false },
+      { text: "Paris", isCorrect: true },
+      { text: "Rome", isCorrect: false },
+    ],
+  },
+  {
+    title: "Which planet is known as the Red Planet?",
+    options: [
+      { text: "Earth", isCorrect: false },
+      { text: "Mars", isCorrect: true },
+      { text: "Jupiter", isCorrect: false },
+      { text: "Venus", isCorrect: false },
+    ],
+  },
+];
 
-questions.push({
-  id: 1,
-  title: "What is JavaScript?",
-  options: [
-    { id: 1, text: "A programming language", isCorrect: true },
-    { id: 2, text: "A type of coffee", isCorrect: false },
-    { id: 3, text: "A brand of shoes", isCorrect: false },
-    { id: 4, text: "A musical instrument", isCorrect: false },
-  ],
-});
+const title = document.getElementById("question-title");
+const options = document.getElementById("options");
+const result = document.getElementById("result");
+const progress = document.getElementById("progress");
+const nextButton = document.getElementById("next");
 
-questions.push({
-  id: 2,
-  title: "What is the capital of France?",
-  options: [
-    { id: 1, text: "Berlin", isCorrect: false },
-    { id: 2, text: "Madrid", isCorrect: false },
-    { id: 3, text: "Paris", isCorrect: true },
-    { id: 4, text: "Rome", isCorrect: false },
-  ],
-});
+let currentQuestionIndex = 0;
+let score = 0;
+let answered = false;
 
-questions.push({
-  id: 3,
-  title: "Which planet is known as the Red Planet?",
-  options: [
-    { id: 1, text: "Earth", isCorrect: false },
-    { id: 2, text: "Mars", isCorrect: true },
-    { id: 3, text: "Jupiter", isCorrect: false },
-    { id: 4, text: "Venus", isCorrect: false },
-  ],
-});
+renderQuestion();
 
-function errorModal() {
-  const modal = document.createElement("div");
+nextButton.addEventListener("click", goToNextQuestion);
 
-  const h1 = document.createElement("h1");
+function renderQuestion() {
+  const question = questions[currentQuestionIndex];
 
-  h1.innerHTML = "Voce errou quer tentar denovo ?";
+  answered = false;
+  title.textContent = question.title;
+  options.innerHTML = "";
+  result.className = "mt-6 hidden rounded-lg border p-4 text-lg font-medium";
+  result.textContent = "";
+  progress.textContent = `${currentQuestionIndex + 1} de ${questions.length}`;
+  nextButton.textContent = currentQuestionIndex === questions.length - 1 ? "Finalizar" : "Proxima";
 
-  modal.appendChild(h1);
+  question.options.forEach((option) => {
+    const button = document.createElement("button");
+    button.className =
+      "rounded-lg border border-gray-200 px-4 py-3 text-left text-gray-800 transition hover:border-blue-500 hover:bg-blue-50";
+    button.textContent = option.text;
 
-  modal.classList += "absolute top-50 flex flex-col gap-5 bg-white";
+    button.addEventListener("click", () => answerQuestion(option, button));
+
+    options.appendChild(button);
+  });
 }
 
-const questionsDiv = document.getElementById("questions-div");
+function answerQuestion(option, button) {
+  if (answered) return;
 
-function answerQuestion(option) {}
+  answered = true;
 
-function fetchQuestions() {
-  const button = document.createElement("button");
+  if (option.isCorrect) {
+    score += 1;
+    button.classList.add("border-green-500", "bg-green-50");
+    showResult("Acertou!", "border-green-300 bg-green-50 text-green-800");
+  } else {
+    button.classList.add("border-red-500", "bg-red-50");
+    showResult("Errou. Tente a proxima.", "border-red-300 bg-red-50 text-red-800");
+  }
 }
 
-console.log("cheguei");
+function showResult(message, className) {
+  result.className = `mt-6 rounded-lg border p-4 text-lg font-medium ${className}`;
+  result.textContent = message;
+}
 
-errorModal();
+function goToNextQuestion() {
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex += 1;
+    renderQuestion();
+    return;
+  }
+
+  title.textContent = `Resultado: ${score} de ${questions.length}`;
+  options.innerHTML = "";
+  progress.textContent = "";
+  nextButton.textContent = "Recomecar";
+  showResult("Clique para jogar de novo.", "border-blue-300 bg-blue-50 text-blue-800");
+
+  currentQuestionIndex = -1;
+  score = 0;
+}
