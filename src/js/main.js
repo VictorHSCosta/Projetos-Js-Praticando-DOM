@@ -4,27 +4,33 @@ const projects = [
   {
     title: "Draw",
     description: "Canvas para desenhar com o mouse.",
-    url: "/draw",
+    url: "./pages/draw/index.html",
     accentClass: "bg-amber-700",
   },
   {
     title: "Piano",
     description: "Toque notas pelo teclado ou clique.",
-    url: "/piano",
+    url: "./pages/piano/index.html",
     accentClass: "bg-orange-500",
   },
   {
     title: "Jogo da Velha",
     description: "Base para treinar regras e eventos.",
-    url: "/jogoDaVelha",
+    url: "./pages/jogoDaVelha/index.html",
     accentClass: "bg-emerald-600",
   },
   {
     title: "Question",
     description: "Perguntas criadas e respondidas via DOM.",
-    url: "/question",
+    url: "./pages/question/index.html",
     accentClass: "bg-blue-600",
   },
+  {
+    title: "Calculadora",
+    description: "Página de calculadora com operações básicas.",
+    url: "./pages/calculadora/index.html",
+    accentClass: "bg-gray-600",
+  }
 ];
 
 const menu = document.getElementById("menu");

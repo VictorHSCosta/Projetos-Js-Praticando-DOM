@@ -30,6 +30,7 @@ const playIcon = document.getElementById("play");
 const stopIcon = document.getElementById("stop");
 
 let isPlaying = false;
+let audioStarted = false;
 
 document.addEventListener("keydown", (event) => playNote(event.key));
 
@@ -39,14 +40,22 @@ piano.addEventListener("click", (event) => {
 
 playButton.addEventListener("click", playSongFromInput);
 
-function playNote(key) {
+async function playNote(key) {
   const normalizedKey = key.toLowerCase();
   const note = notesByKey[normalizedKey];
 
   if (!note) return;
 
+  await startAudio();
   synth.triggerAttackRelease(note, 0.2, Tone.now());
   animateKey(normalizedKey);
+}
+
+async function startAudio() {
+  if (audioStarted) return;
+
+  await Tone.start();
+  audioStarted = true;
 }
 
 function animateKey(key) {

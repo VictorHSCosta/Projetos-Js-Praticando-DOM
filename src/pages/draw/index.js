@@ -15,10 +15,11 @@ selectedButton.classList.add("border-green-500");
 resizeCanvas();
 
 window.addEventListener("resize", resizeCanvas);
-canvas.addEventListener("mousedown", startDrawing);
-canvas.addEventListener("mouseup", stopDrawing);
-canvas.addEventListener("mouseleave", stopDrawing);
-canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("pointerdown", startDrawing);
+canvas.addEventListener("pointerup", stopDrawing);
+canvas.addEventListener("pointercancel", stopDrawing);
+canvas.addEventListener("pointerleave", stopDrawing);
+canvas.addEventListener("pointermove", draw);
 clearButton.addEventListener("click", clearCanvas);
 
 colorButtons.forEach((button) => {
@@ -42,17 +43,26 @@ function chooseColor(event) {
 }
 
 function startDrawing(event) {
+  const point = getCanvasPoint(event);
+
+  canvas.setPointerCapture(event.pointerId);
   canDraw = true;
-  mouseX = event.offsetX;
-  mouseY = event.offsetY;
+  mouseX = point.x;
+  mouseY = point.y;
 }
 
-function stopDrawing() {
+function stopDrawing(event) {
+  if (typeof event.pointerId === "number" && canvas.hasPointerCapture(event.pointerId)) {
+    canvas.releasePointerCapture(event.pointerId);
+  }
+
   canDraw = false;
 }
 
 function draw(event) {
   if (!canDraw) return;
+
+  const point = getCanvasPoint(event);
 
   context.beginPath();
   context.lineWidth = 5;
@@ -60,13 +70,22 @@ function draw(event) {
   context.lineCap = "round";
   context.strokeStyle = selectedColor;
   context.moveTo(mouseX, mouseY);
-  context.lineTo(event.offsetX, event.offsetY);
+  context.lineTo(point.x, point.y);
   context.stroke();
 
-  mouseX = event.offsetX;
-  mouseY = event.offsetY;
+  mouseX = point.x;
+  mouseY = point.y;
 }
 
 function clearCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function getCanvasPoint(event) {
+  const rect = canvas.getBoundingClientRect();
+
+  return {
+    x: ((event.clientX - rect.left) / rect.width) * canvas.width,
+    y: ((event.clientY - rect.top) / rect.height) * canvas.height,
+  };
 }

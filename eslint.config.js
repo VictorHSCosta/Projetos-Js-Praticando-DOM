@@ -2,6 +2,9 @@ import stylistic from "@stylistic/eslint-plugin";
 
 export default [
   {
+    ignores: ["dist/**", "node_modules/**"],
+  },
+  {
     files: ["**/*.js"],
     plugins: {
       stylistic,
@@ -13,6 +16,8 @@ export default [
         window: "readonly",
         document: "readonly",
         navigator: "readonly",
+        localStorage: "readonly",
+        setTimeout: "readonly",
       },
     },
     rules: {
