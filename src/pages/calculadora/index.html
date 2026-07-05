@@ -5,140 +5,222 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculadora</title>
     <link rel="stylesheet" href="../../styles/main.css" />
+    <style>
+      .calculator-scroll {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(34, 211, 238, 0.45) transparent;
+      }
+
+      .calculator-scroll::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      .calculator-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .calculator-scroll::-webkit-scrollbar-thumb {
+        background: rgba(34, 211, 238, 0.35);
+        border-radius: 999px;
+      }
+
+      .calculator-scroll::-webkit-scrollbar-thumb:hover {
+        background: rgba(34, 211, 238, 0.55);
+      }
+    </style>
   </head>
   <body
-    class="flex h-full min-h-screen flex-col items-center justify-center bg-[#090d14] px-4 text-slate-100"
+    class="flex h-full min-h-screen items-center justify-center bg-[#090d14] px-4 text-slate-100"
   >
     <main
-      class="flex w-full max-w-sm flex-col gap-4 rounded-[2rem] border border-white/10 bg-[#111827] p-5 shadow-2xl shadow-black/60"
+      class="grid w-full max-w-4xl gap-4 py-6 md:grid-cols-[minmax(320px,380px)_minmax(260px,1fr)] md:items-stretch"
     >
-      <div
-        class="flex min-h-36 flex-col justify-end rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-[#020617] to-[#172033] p-5 text-right text-4xl font-semibold text-white shadow-inner shadow-black/60"
+      <section
+        id="calculator-panel"
+        class="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-[#111827] p-5 shadow-2xl shadow-black/60"
       >
-        <span id="display" class="overflow-x-auto">0</span>
-      </div>
+        <div
+          class="flex min-h-36 flex-col justify-end rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-[#020617] to-[#172033] p-5 text-right text-4xl font-semibold text-white shadow-inner shadow-black/60"
+        >
+          <span
+            id="display"
+            class="calculator-scroll block max-w-full overflow-x-auto whitespace-nowrap pb-1"
+            >0</span
+          >
+        </div>
 
-      <div>
+        <div>
+          <ul
+            id="elements-box"
+            class="grid w-full grid-cols-4 gap-3 text-center text-xl font-semibold [&>li]:cursor-pointer [&>li]:select-none [&>li]:active:translate-y-0"
+          >
+            <li
+              id="key-clear"
+              class="flex h-16 items-center justify-center rounded-2xl bg-rose-950 text-rose-300 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-rose-900"
+            >
+              C
+            </li>
+            <li
+              id="key-backspace"
+              data-value="E"
+              class="flex h-16 items-center justify-center rounded-2xl bg-rose-950 text-rose-300 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-rose-900"
+            >
+              E
+            </li>
+            <li
+              id="key-percentage"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-700 text-slate-100 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-600"
+            >
+              %
+            </li>
+            <li
+              id="key-divide"
+              class="flex h-16 items-center justify-center rounded-2xl bg-cyan-500 text-slate-950 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-cyan-400"
+            >
+              /
+            </li>
+            <li
+              id="key-seven"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              7
+            </li>
+            <li
+              id="key-eight"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              8
+            </li>
+            <li
+              id="key-nine"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              9
+            </li>
+            <li
+              id="key-multiply"
+              class="flex h-16 items-center justify-center rounded-2xl bg-cyan-500 text-slate-950 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-cyan-400"
+            >
+              x
+            </li>
+            <li
+              id="key-four"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              4
+            </li>
+            <li
+              id="key-five"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              5
+            </li>
+            <li
+              id="key-six"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              6
+            </li>
+            <li
+              id="key-minus"
+              class="flex h-16 items-center justify-center rounded-2xl bg-cyan-500 text-slate-950 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-cyan-400"
+            >
+              -
+            </li>
+            <li
+              id="key-one"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              1
+            </li>
+            <li
+              id="key-two"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              2
+            </li>
+            <li
+              id="key-three"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              3
+            </li>
+            <li
+              id="key-plus"
+              class="flex h-16 items-center justify-center rounded-2xl bg-cyan-500 text-slate-950 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-cyan-400"
+            >
+              +
+            </li>
+            <li
+              id="key-zero"
+              class="col-span-2 flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              0
+            </li>
+            <li
+              id="key-dot"
+              class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
+            >
+              .
+            </li>
+            <li
+              id="key-equals"
+              class="flex h-16 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-emerald-400"
+            >
+              =
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="history-panel"
+        class="rounded-[2rem] border border-white/10 bg-[#111827] p-5 shadow-2xl shadow-black/60"
+      >
+        <div class="mb-2 flex items-center justify-between px-1">
+          <h2
+            id="history-title"
+            class="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400"
+          >
+            Historico
+          </h2>
+          <span id="history-count" class="text-xs font-medium text-cyan-300">3</span>
+        </div>
+
         <ul
-          id="elements-box"
-          class="grid w-full grid-cols-4 gap-3 text-center text-xl font-semibold [&>li]:cursor-pointer [&>li]:select-none [&>li]:active:translate-y-0"
+          id="history-list"
+          class="calculator-scroll flex max-h-80 flex-col gap-2 overflow-y-auto pr-1 md:max-h-[33.5rem]"
         >
           <li
-            id="key-clear"
-            class="flex h-16 items-center justify-center rounded-2xl bg-rose-950 text-rose-300 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-rose-900"
+            id="history-item-1"
+            class="rounded-2xl border border-white/5 bg-slate-900/80 px-3 py-2 text-right"
           >
-            C
+            <span id="history-calculation-1" class="block text-sm text-slate-400">15 + 7</span>
+            <strong id="history-result-1" class="block text-lg font-semibold text-slate-100"
+              >= 22</strong
+            >
           </li>
           <li
-            id="key-backspace"
-            class="flex h-16 items-center justify-center rounded-2xl bg-rose-950 text-rose-300 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-rose-900"
+            id="history-item-2"
+            class="rounded-2xl border border-white/5 bg-slate-900/80 px-3 py-2 text-right"
           >
-            E
+            <span id="history-calculation-2" class="block text-sm text-slate-400">48 / 6</span>
+            <strong id="history-result-2" class="block text-lg font-semibold text-slate-100"
+              >= 8</strong
+            >
           </li>
           <li
-            id="key-percentage"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-700 text-slate-100 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-600"
+            id="history-item-3"
+            class="rounded-2xl border border-white/5 bg-slate-900/80 px-3 py-2 text-right"
           >
-            %
-          </li>
-          <li
-            id="key-divide"
-            class="flex h-16 items-center justify-center rounded-2xl bg-cyan-500 text-slate-950 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-cyan-400"
-          >
-            /
-          </li>
-          <li
-            id="key-seven"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            7
-          </li>
-          <li
-            id="key-eight"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            8
-          </li>
-          <li
-            id="key-nine"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            9
-          </li>
-          <li
-            id="key-multiply"
-            class="flex h-16 items-center justify-center rounded-2xl bg-cyan-500 text-slate-950 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-cyan-400"
-          >
-            x
-          </li>
-          <li
-            id="key-four"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            4
-          </li>
-          <li
-            id="key-five"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            5
-          </li>
-          <li
-            id="key-six"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            6
-          </li>
-          <li
-            id="key-minus"
-            class="flex h-16 items-center justify-center rounded-2xl bg-cyan-500 text-slate-950 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-cyan-400"
-          >
-            -
-          </li>
-          <li
-            id="key-one"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            1
-          </li>
-          <li
-            id="key-two"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            2
-          </li>
-          <li
-            id="key-three"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            3
-          </li>
-          <li
-            id="key-plus"
-            class="flex h-16 items-center justify-center rounded-2xl bg-cyan-500 text-slate-950 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-cyan-400"
-          >
-            +
-          </li>
-          <li
-            id="key-zero"
-            class="col-span-2 flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            0
-          </li>
-          <li
-            id="key-dot"
-            class="flex h-16 items-center justify-center rounded-2xl bg-slate-800 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-slate-700"
-          >
-            .
-          </li>
-          <li
-            id="key-equals"
-            class="flex h-16 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:bg-emerald-400"
-          >
-            =
+            <span id="history-calculation-3" class="block text-sm text-slate-400">9 x 9</span>
+            <strong id="history-result-3" class="block text-lg font-semibold text-cyan-300"
+              >= 81</strong
+            >
           </li>
         </ul>
-      </div>
+      </section>
     </main>
 
     <script type="module" src="./index.js"></script>

@@ -16,9 +16,13 @@ allElements.forEach((value) => {
 
 function clickOnButton(event){
   //filtra comandos especiais como c e =
-  switch(event.target.innerText.toString()){
+  switch (event.target.innerText.toString()){
     case "C":
       clearScreen(screen);
+      return;
+      break;
+    case "=":
+      calculate();
       return;
       break;
     default:
@@ -41,3 +45,11 @@ function extractTextFromEvent(value, event){
 function clearScreen(screen) {
   screen.innerText = "0";
 }
+
+
+function calculate(){
+  const valueOfScrean = screen.innerText.replace("x", "*").split(/([+\-x/%])/).join(" ");
+
+  screen.innerText = eval(valueOfScrean);
+}
+
