@@ -51,6 +51,10 @@ function calculate(){
   const valueOfScrean = screen.innerText.replace("x", "*").split(/([+\-x/%])/).join(" ");
 
   // só usei aqui pq é uma calculadora
-  screen.innerText = eval(valueOfScrean);
+  try {
+    screen.innerText = eval(valueOfScrean);
+  } catch (e){
+    screen.innerText = "ERRO " + e;
+  }
 }
 
