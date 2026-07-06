@@ -1,39 +1,51 @@
-let tabuleiro = [["", "", ""], ["", "", ""], ["", "", ""]];
+// Selecionando os elementos do DOM (Document Object Model)
+const initialModal = document.getElementById("initial_modal");
+const buttonToCloseModal = document.getElementById("close_modal");
+const buttonToStartGame = document.getElementById("start_game");
+const usernameInput = document.getElementById("username_input");
+const gameStatus = document.getElementById("game_status");
 
-const Player1 = localStorage.getItem("player") || {
-  name:"",
-  points:"",
-  isXOrO:"X"
-};
+// Função para fechar o modal com um efeito de transição suave
+function closeInitialModal() {
+  // Adiciona classes do Tailwind para sumir com suavidade (fade out)
+  initialModal.classList.add("opacity-0", "pointer-events-none");
 
-const Player2AI = {
-  name:"",
-  points:"",
-  isXOrO:"O"
-};
+  // Aguarda 300ms (tempo da animação) para adicionar a classe 'hidden' que oculta o elemento
+  setTimeout(() => {
+    initialModal.classList.add("hidden");
+  }, 300);
+}
 
-const classButtonSelected = "bg-emerald-600 border-emerald-300 border-2";
-const selectedClasses = classButtonSelected.split(" ");
+// Escuta o clique no botão "X" (Fechar) usando a referência direta da função
+buttonToCloseModal.addEventListener("click", closeInitialModal);
 
-const selectButttonPlayer = (e) => {
-  if (e.target.id === "ButtonX") {
-    ButtonO.classList.remove(...selectedClasses);
-    ButtonX.classList.add(...selectedClasses);
-  } else {
-    ButtonX.classList.remove(...selectedClasses);
-    ButtonO.classList.add(...selectedClasses);
+// Escuta o clique no botão "Começar a Jogar"
+buttonToStartGame.addEventListener("click", () => {
+  const username = usernameInput.value.trim();
+
+  // Validação simples: se o usuário não digitar nada, exibe um alerta
+  if (username === "") {
+    window.alert("Por favor, digite um nome de usuário válido para jogar!");
+    return;
   }
-};
 
-const getFrontEndBoadId = (position) => document.getElementById(`square${position}`);
-const getPlayerName = () => document.getElementById("PlayerName").value;
+  // Atualiza o texto de status na tela usando DOM para saudar o jogador
+  gameStatus.textContent = `Boa sorte, ${username}! Sua vez (Jogador X)`;
 
-// Configura os 2 botoes do menu principal
-const ButtonX = document.getElementById("ButtonX");
-const ButtonO = document.getElementById("ButtonO");
-ButtonX.addEventListener("click", (e) => selectButttonPlayer(e));
-ButtonO.addEventListener("click", (e) => selectButttonPlayer(e));
+  // Fecha o modal chamando a função
+  closeInitialModal();
+});
 
+// Fecha o modal caso o jogador clique fora da caixa do modal (no fundo escuro)
+initialModal.addEventListener("click", (event) => {
+  if (event.target === initialModal) {
+    closeInitialModal();
+  }
+});
 
-
-// Adiciona um listening em cada uma das teclas 
+// Fecha o modal ao pressionar a tecla "Escape" no teclado
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !initialModal.classList.contains("hidden")) {
+    closeInitialModal();
+  }
+});
