@@ -30,7 +30,7 @@ const projects = [
     description: "Página de calculadora com operações básicas.",
     url: "./pages/calculadora/index.html",
     accentClass: "bg-gray-600",
-  }
+  },
 ];
 
 const menu = document.getElementById("menu");

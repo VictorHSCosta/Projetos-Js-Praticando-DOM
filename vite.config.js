@@ -12,7 +12,9 @@ function getHtmlInputs() {
     main: resolve(srcRoot, "index.html"),
   };
 
-  const pageFolders = readdirSync(pagesRoot, { withFileTypes: true }).filter((entry) => entry.isDirectory());
+  const pageFolders = readdirSync(pagesRoot, { withFileTypes: true }).filter((entry) =>
+    entry.isDirectory()
+  );
 
   pageFolders.forEach((folder) => {
     const pageHtml = resolve(pagesRoot, folder.name, "index.html");

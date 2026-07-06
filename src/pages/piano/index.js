@@ -76,7 +76,10 @@ function animateKey(key) {
 function playSongFromInput() {
   if (isPlaying) return;
 
-  const notes = input.value.toLowerCase().split("").filter((key) => notesByKey[key]);
+  const notes = input.value
+    .toLowerCase()
+    .split("")
+    .filter((key) => notesByKey[key]);
 
   if (notes.length === 0) return;
 
